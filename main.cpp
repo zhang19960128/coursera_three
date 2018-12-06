@@ -42,6 +42,7 @@ int main(){
       fs>>temp;
       input.push_back(temp);
    }
+   input.pop_back();
    int size=input.size();
    int* data=new int [size];
    size_t count=0;
@@ -49,9 +50,8 @@ int main(){
       data[count]=*a;
       count++;
    }
-   std::cout<<count<<std::endl;
    quicksort(data,0,size-1);
    for(size_t i=0;i<size;i++){
-   //   std::cout<<data[i]<<std::endl;
+      std::cout<<data[i]<<std::endl;
    }
 }
