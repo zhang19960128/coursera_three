@@ -11,7 +11,7 @@ void swap(int* input,int a,int b){
    input[b]=temp;
 }
 void quicksort(int* input,int start,int end){
-   if(end-start==0){
+   if(end-start<=0){
    }
    else{
      srand(time(NULL));
@@ -20,16 +20,17 @@ void quicksort(int* input,int start,int end){
     temp=start+(end-start)*temp;
     int pivot=floor(temp);
     swap(input,start,pivot);
-    std::cout<<"Partition Element is: "<<input[start]<<std::endl;
-    int i=start+1;
+    int i=start;
     int j=start;
     for(j=start+1;j<=end;j++){
-      if(input[j]<input[start]){
+      if(input[j]<=input[start]){
          swap(input,j,i+1);
          i++;
       }
     }
     swap(input,i,start);
+    quicksort(input,start,i-1);
+    quicksort(input,i+1,end);
    }
 }
 int main(){
@@ -48,9 +49,8 @@ int main(){
       data[count]=*a;
       count++;
    }
-   int a[10]={10,9,8,7,6,5,4,3,2,1};
-   quicksort(a,0,9);
-   for(size_t i=0;i<10;i++){
-      std::cout<<a[i]<<std::endl;
+   quicksort(data,0,size-1);
+   for(size_t i=0;i<size;i++){
+      std::cout<<data[i]<<std::endl;
    }
 }
